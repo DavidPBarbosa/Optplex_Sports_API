@@ -9,7 +9,6 @@ const pedidoSchema = joi.object({
     valorTotal: joi.string().required(),
     observacao: joi.string().required(),
     cpf: joi.string().required(),
-    idEntregador: joi.string().required()
 });
 exports.listarPedido = async (req, res) => {
     try {
@@ -30,19 +29,6 @@ exports.buscaPedidoID = async (req, res) => {
         res.json(result);
     } catch (err) {
         console.error('Erro ao buscar o Pedido:', err);
-        res.status(500).json({ error: 'Erro interno do servidor' });
-    }
-};
-exports.buscaIdEntregador = async (req, res) => {
-    const { idEntregador } = req.params;
-    try {
-        const [result] = await db.query('SELECT * FROM pedido WHERE idEntregador LIKE ?', [`${idEntregador}%`]);
-        if (result.length === 0) {
-            return res.status(404).json({ error: 'Pedido não encontrado' });
-        }
-        res.json(result);
-    } catch (err) {
-        console.error('Erro ao buscar o pedido:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 };
