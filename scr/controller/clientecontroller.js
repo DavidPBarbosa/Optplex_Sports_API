@@ -85,7 +85,7 @@ exports.deletarCliente = async (req, res) => {
         await db.query('DELETE FROM cliente WHERE cpf = ?', [cpf]);
         res.json({ message: 'Cliente deletado com sucesso' });
     } catch (err) {
-        console.error('Erro ao deletarcons cliente:', err);
+        console.error('Erro ao deletar o cliente:', err);
         res.status(500).json({ error: 'Erro ao deletar cliente' });
     }
 };

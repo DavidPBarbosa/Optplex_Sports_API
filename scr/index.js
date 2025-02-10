@@ -11,6 +11,7 @@ const routes = require('./routes/routes');
 const clienteRoutes = require('./routes/clienteroutes');
 const pedidoRoutes = require('./routes/pedidoroutes');
 const produtoRoutes = require('./routes/produtoroutes');
+const itempedidoRoutes = require('./routes/itempedidoroutes');
 
 const corsOptions = {
     origin: ['http://localhost:3333', 'https://meudominio.com'], 
@@ -34,6 +35,7 @@ app.use('/', routes);
 app.use('/', clienteRoutes);
 app.use('/', produtoRoutes);
 app.use('/', pedidoRoutes);
+app.use('/', itempedidoRoutes);
 
 app.use((err, req, res, next) => {
     consol.console.error(err.stack);
