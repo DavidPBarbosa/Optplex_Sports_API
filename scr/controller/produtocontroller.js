@@ -34,7 +34,7 @@ exports.buscarProdutoNome = async (req, res) => {
 exports.buscarProdutoID = async (req, res) => {
     const { idProduto } = req.params;
     try {
-        const [result] = await db.query('SELECT * FROM produto WHERE idProduto LIKE ?', [`${idProduto}%`]);
+        const [result] = await db.query('SELECT * FROM produto WHERE idProduto LIKE ?', [`${idProduto}`]);
         if (result.length === 0) {
             return res.status(404).json({ error: 'Produto não encontrado' });
         }
@@ -50,8 +50,8 @@ exports.adicionarProduto = async (req, res) => {
     if (error) {
         return res.status(400).json({ error: error.details[0].message });
     } try {
-        const novoProduto = { idProduto, nomeProduto, tipo, descricao, valorUnit, imagem: hash };
-        await db.query('INSERT INFO produto SET ?', novoProduto);
+        const novoProduto = { idProduto, nomeProduto, tipo, descricao, valorUnit, imagem };
+        await db.query('INSERT INTO produto SET ?', novoProduto);
         res.json({ message: 'Produto adicionado com sucesso' });
     } catch (err) {
         console.error('Erro ao adicionar cliente:', err);

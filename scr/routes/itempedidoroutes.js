@@ -3,9 +3,9 @@ const router = express.Router();
 const itemPedidoController = require('../controller/itemcontroller');
 
 router.get('/item', itemPedidoController.listarItemPedido );
-router.get('/item/:itemID', itemPedidoController.listarItemID );
+router.get('/item/:idItem', itemPedidoController.listarItemID );
 router.post('/item', itemPedidoController.adicionarItemPedido );
-router.put('/item/:itemID', itemPedidoController.atualizarItemPedido );
-router.delete('/item/:itemID', itemPedidoController.deletarItemPedido);
+router.put('/item/:idItem', itemPedidoController.atualizarItemPedido );
+router.delete('/item/:idItem', itemPedidoController.deletarItemPedido);
 
 module.exports = router;
