@@ -56,7 +56,7 @@ exports.atualizarItemPedido = async (req, res) => {
         if (result.length === 0) {
             return res.status(400).json({ error: 'Item do pedido não encontrado' });
         }
-        const itempedidoAtualizado = { qtde, valorParcial, idProduto, idPedido: hash };
+        const itempedidoAtualizado = { qtde, valorParcial, idProduto, idPedido};
         await db.query('UPDATE itempedido SET ? WHERE idItem = ?', [itempedidoAtualizado, idItem]);
         res.json({ message: 'Item do pedido atulizado com sucesso' });
     } catch (err) {

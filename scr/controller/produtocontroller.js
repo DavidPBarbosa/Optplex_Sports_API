@@ -70,7 +70,7 @@ exports.atualizarProduto = async (req, res) => {
         if (result.length === 0) {
             return res.status(400).json({ error: 'Produto não encontrado' });
         }
-        const produtoAtualizado = { nomeProduto, tipo, descricao, valorUnit, imagem: hash };
+        const produtoAtualizado = { idProduto, nomeProduto, tipo, descricao, valorUnit, imagem };
         await db.query('UPDATE produto SET ? WHERE idProduto = ?', [produtoAtualizado, idProduto]);
         res.json({ message: 'Produto atualizado com sucesso' });
     } catch (err) {
