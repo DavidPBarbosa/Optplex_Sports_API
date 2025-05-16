@@ -38,7 +38,7 @@ exports.buscarProdutoID = async (req, res) => {
         if (result.length === 0) {
             return res.status(404).json({ error: 'Produto não encontrado' });
         }
-        res.json(result);
+        res.json(result[0]);
     } catch (err) {
         console.error('Erro ao buscar produto:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });

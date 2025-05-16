@@ -14,17 +14,20 @@ const produtoRoutes = require('./routes/produtoroutes');
 const itempedidoRoutes = require('./routes/itempedidoroutes');
 
 const corsOptions = {
-    origin: ['http://localhost:3333', 'https://meudominio.com'], 
+    origin: ['http://localhost:3333', 'http://127.0.0.1:5501'], 
     methods: 'GET, POST, PUT, PATCH, DELETE', 
     credentials: true, 
+    allowedHeader: ['Content-Type','*'],
+    exposedHeader: ['Content-Length','X-Total-Count']
 };
 const app = express();
 
 app.use(helmet()); 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
+
 app.use(morgan('dev')); 
 app.use(express.json()); 
-
+app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
